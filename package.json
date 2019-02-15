@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "run-p start:**",
-    "start:app": "owc-dev-server",
+    "start:app": "owc-dev-server -o src",
     "start:lambda": "netlify-lambda serve src/lambda",
     "build": "run-p build:**",
     "build:app": "echo 'nah I am good'",
