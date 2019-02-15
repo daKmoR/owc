@@ -26,5 +26,6 @@ yarn.lock
 package-lock.json
 
 ## build output
-dist
-build-stats.json
+/dist
+/build-stats.json
+/lambda
