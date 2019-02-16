@@ -52,6 +52,7 @@ class OwcApp extends LitElement {
   constructor() {
     super();
     this.data = [];
+    this.query = '';
   }
 
   static get styles() {
@@ -59,56 +60,64 @@ class OwcApp extends LitElement {
   }
 
   render() {
-    const list = this.data.map(
-      result => html`
-        <div class="package">
-          <div class="package__title">
-            <a class="title__name" href=${result.package.links.npm} target="_blank">
-              ${result.package.name}
-            </a>
-            <div class="package__links">
-              <a
-                class="links__link"
-                title="View on GitHub"
-                href=${result.package.links.repository}
-                target="_blank"
-              >
-                ${githubIcon}
+    let list =
+      this.query === ''
+        ? html``
+        : html`
+            We could not find any web component for "${this.query}"
+          `;
+    if (this.data.length > 0) {
+      list = this.data.map(
+        result => html`
+          <div class="package">
+            <div class="package__title">
+              <a class="title__name" href=${result.package.links.npm} target="_blank">
+                ${result.package.name}
               </a>
-              <a
-                class="links__link"
-                title="View on UNPKG"
-                href=${`https://www.unpkg.com/${result.package.name}/`}
-                target="_blank"
-              >
-                U
-              </a>
-              <a
-                class="links__link"
-                title="View on npm"
-                href=${result.package.links.npm}
-                target="_blank"
-              >
-                ${npmIcon}
-              </a>
+              <div class="package__links">
+                <a
+                  class="links__link"
+                  title="View on GitHub"
+                  href=${result.package.links.repository}
+                  target="_blank"
+                >
+                  ${githubIcon}
+                </a>
+                <a
+                  class="links__link"
+                  title="View on UNPKG"
+                  href=${`https://www.unpkg.com/${result.package.name}/`}
+                  target="_blank"
+                >
+                  U
+                </a>
+                <a
+                  class="links__link"
+                  title="View on npm"
+                  href=${result.package.links.npm}
+                  target="_blank"
+                >
+                  ${npmIcon}
+                </a>
+              </div>
+            </div>
+            <div class="package__content">
+              ${result.package.description}
+            </div>
+            <div class="package__footer">
+              <div class="package__type">
+                <span>Type:</span>
+                ${renderType(result.owcType)}
+              </div>
+              <div class="package__tags">
+                <span>Tags:</span>
+                ${renderTags(result.package.keywords)}
+              </div>
             </div>
           </div>
-          <div class="package__content">
-            ${result.package.description}
-          </div>
-          <div class="package__footer">
-            <div class="package__type">
-              <span>Type:</span>
-              ${renderType(result.owcType)}
-            </div>
-            <div class="package__tags">
-              <span>Tags:</span>
-              ${renderTags(result.package.keywords)}
-            </div>
-          </div>
-        </div>
-      `,
-    );
+        `,
+      );
+    }
 
     return html`
       <header class="app-header">
@@ -137,6 +146,7 @@ class OwcApp extends LitElement {
   }
 
   async search(query) {
+    this.query = query;
     const url = `/.netlify/functions/search?q=${query}`;
     const response = await fetch(url);
     const json = await response.json();
