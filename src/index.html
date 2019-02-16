@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="Put your description here.">
 
-  <script type="module" src="./owc-app.js"></script>
-
   <style>
     * {
       margin: 0;
@@ -18,11 +16,19 @@
       background-color: #ededed;
     }
   </style>
-  <title>Open-wc Starter App</title>
+  <title>Custom Elements</title>
 </head>
 <body>
 
   <owc-app></owc-app>
 
 </body>
+
+<script type="module">
+  const check = 'is<% print("Webpack"); %>';
+  if (check !== 'isWebpack') {
+    import('./owc-app.js');
+  }
+</script>
+
 </html>
