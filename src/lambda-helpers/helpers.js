@@ -1,5 +1,11 @@
-export const generateUrl = (api, keywords, query) => {
-  const result = `${api}?q=keywords:${keywords.join(',')} ${query}`;
+import { keywords, wcTypes } from '../values.js';
+
+export const generateUrl = (api, query, type = '') => {
+  let keywordsString = keywords.join(',');
+  if (type !== '') {
+    keywordsString = type;
+  }
+  const result = `${api}?q=keywords:${keywordsString} ${query}`;
   return result;
 };
 
@@ -7,8 +13,13 @@ export const processResponseJson = json => {
   const processed = json;
   if (processed.results) {
     processed.results.forEach((meta, key) => {
-      if (meta.package.keywords && meta.package.keywords.includes('owc-lit-element-2.x')) {
-        processed.results[key].owcType = 'lit-element-2.x';
+      if (meta.package.keywords) {
+        for (let i = 0; i < wcTypes.length; i += 1) {
+          if (meta.package.keywords.includes(wcTypes[i].key)) {
+            processed.results[key].owcType = wcTypes[i].key;
+            break;
+          }
+        }
       }
     });
   }

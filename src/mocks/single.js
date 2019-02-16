@@ -7,7 +7,7 @@ exports.default = {
         scope: 'paper',
         version: '0.0.1',
         description: 'This is a super awesome input',
-        keywords: ['owc-lit-element-2.x'],
+        keywords: ['lit-element-2.x'],
         date: '2019-02-02T20:02:21.156Z',
         links: {
           npm: 'https://www.npmjs.com/package/%40open-wc%2Fpolyfills-loader',

@@ -1,37 +1,38 @@
 > ## 🛠 Status: In Development
-> This starter app is currently in development.
+> This custom elements catalog is currently in development.
 
 <p align="center">
   <img width="200" src="https://open-wc.org/hero.png"></img>
 </p>
 
-## Open-wc Starter App
+## Custom Elements Catalog
 
 [![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc) 
 
-## Quickstart
+This let's you search the npm registry for web components.
 
-To get started:
+## Adding a web component
 
-```sh
-# in a new folder:
-npm init yo open-wc
-# requires npm 6 or higher
-
-npm run start
+All you need to do to be listed on http://custom-elements.org is add a keyword to your `package.json` like so.
+```
+"keywords": [
+  "web-component",
+],
 ```
 
-<p align="center">
-  <img src="./open-wc-starter-app.png"></img>
-</p>
+We also feature a special "version-save" search. e.g. while searching you can specify to only see components that are based on
+- lit-element-2.x
+- polymer-3.x
+- stencil-0.x
 
-## Scripts
+in order to be listed in these searches you will need to add this specific keyword as well.
+You only need ONE keyword to be listed so if you are based on polymer 3 pls only add `polymer-3.x`.
 
-- `start` runs your app, with a minimal express server directly from source (only works in modern browsers)
-- `start:dev` runs your app with auto reload for development, it only works on browsers which support modules for faster builds
-- `start:dev:es5` runs your app for development, it only works on browsers that don't support modules (IE11)
-- `build` builds your app for production and outputs it in the /dist folder
-- `start:build` runs your built app using a plain web server, to prove it works without magic 😃
-- `build:stats` creates an analysis report of your app bundle to be consumed by Webpack Visualizer and Analyser
-- `test` runs your test suite with Karma
-- `lint` runs the linter for your project
+Warning: Deliberately providing wrong keywords may result in a ban. (so pls don't set lit-element-2.x if you are a polymer-3.x component)
+
+## Working on it
+
+```bash
+yarn install
+yarn start
+```

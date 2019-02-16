@@ -1,6 +1,4 @@
-import { html } from 'lit-html';
-
-export default html`
+export default `
   <svg
     viewBox="0 0 244 244"
     version="1.1"

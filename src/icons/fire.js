@@ -1,6 +1,4 @@
-import { html } from 'lit-html';
-
-export default html`
+export default `
   <svg
     version="1.1"
     id="Layer_1"
