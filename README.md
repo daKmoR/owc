@@ -30,6 +30,11 @@ You only need ONE keyword to be listed so if you are based on polymer 3 pls only
 
 Warning: Deliberately providing wrong keywords may result in a ban. (so pls don't set lit-element-2.x if you are a polymer-3.x component)
 
+## Adding a "version-save" search
+
+If you are the author of a base class and you want to add a new filter or new major version feel free to create a PR for this [file](./src/values.js).
+As soon as you or you users start using the keyword you it can be used to filter.
+
 ## Working on it
 
 ```bash
